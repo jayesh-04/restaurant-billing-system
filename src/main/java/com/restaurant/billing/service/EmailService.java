@@ -28,7 +28,9 @@ public class EmailService {
 			
 			sender.send(message);
 		}catch(Exception e){
-			throw new RuntimeException(e);
+			e.printStackTrace();
+			System.out.println("Email failed but order completed.");
+
 		}
 	}
 }

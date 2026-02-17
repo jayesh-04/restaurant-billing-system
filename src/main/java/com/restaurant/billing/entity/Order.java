@@ -4,9 +4,12 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.hibernate.annotations.CreationTimestamp;
+
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import jakarta.persistence.CascadeType;
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
@@ -34,10 +37,16 @@ public class Order {
 	private Long id;
 	private String status;	//created,paid,cancelled
 	private double totalAmount;
+	
+	@CreationTimestamp
+	@Column(updatable = false)
 	private LocalDateTime createdAt;
+
 	private String customerEmail;
 	private String paymentStatus;   // PENDING, PAID
 	private String paymentMethod;   // CASH, CARD, UPI
+	private String customerName;
+	private String customerPhone;
 
 	
 	@OneToMany(

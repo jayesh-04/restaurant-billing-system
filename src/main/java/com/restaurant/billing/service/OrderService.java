@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.restaurant.billing.dto.BillResponse;
+import com.restaurant.billing.dto.CreateOrderRequest;
 import com.restaurant.billing.dto.OrderItemRequest;
 import com.restaurant.billing.entity.MenuItem;
 import com.restaurant.billing.entity.Order;
@@ -153,6 +154,13 @@ public class OrderService {
 	    return orderRepo.save(order);
 	}
 
+	public Order createOrder(CreateOrderRequest request){
+	    Order order = new Order();
+	    order.setCustomerName(request.getCustomerName());
+	    order.setCustomerEmail(request.getCustomerEmail());
+	    order.setCustomerPhone(request.getCustomerPhone());
+	    return orderRepo.save(order);
+	}
 
 
 }

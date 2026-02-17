@@ -6,6 +6,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import com.restaurant.billing.dto.BillResponse;
+import com.restaurant.billing.dto.CreateOrderRequest;
 import com.restaurant.billing.entity.Order;
 import com.restaurant.billing.service.OrderService;
 
@@ -18,9 +19,10 @@ public class OrderController {
 	private final OrderService service;
 
 	@PostMapping
-	public Order create() {
-		return service.createOrder();
+	public Order create(@RequestBody CreateOrderRequest request){
+	    return service.createOrder(request);
 	}
+
 
 	@PostMapping("/{orderId}/add")
 	public Order addItem(@PathVariable Long orderId, @RequestParam Long itemId, @RequestParam int qty) {
@@ -73,5 +75,12 @@ public class OrderController {
 	                 @RequestParam String method){
 	    return service.makePayment(id, method);
 	}
+
+	//added temp just to check
+//	@GetMapping("/test-mail")
+//	public String testMail(){
+//	    service.sendBill("jayeshborase701@gmail.com", new byte[10]);
+//	    return "sent";
+//	}
 
 }

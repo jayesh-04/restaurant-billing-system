@@ -47,7 +47,10 @@ public class PdfGenerator {
 			infoTable.addCell(cell(String.valueOf(order.getId()), normal));
 
 			infoTable.addCell(cell("Date:", bold));
-			infoTable.addCell(cell(order.getCreatedAt().toString(), normal));
+			infoTable.addCell(cell(order.getCreatedAt() != null
+			        ? order.getCreatedAt().toString()
+			                : "N/A", normal
+					));
 
 			infoTable.addCell(cell("Status:", bold));
 			infoTable.addCell(cell(order.getStatus(), normal));
